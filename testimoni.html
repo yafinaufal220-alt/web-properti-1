@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimoni — AKAI Properti</title>
+  <meta name="description" content="Apa kata klien kami? Baca cerita nyata dari pembeli, investor, dan mitra AKAI Properti.">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Testimonials-specific styles */
+    .testi-hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--line);
+    }
+    .testi-stat {
+      text-align: center;
+    }
+    .testi-stat .num {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .testi-stat .lbl {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Featured testimonial */
+    .testi-featured {
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: 8px;
+      padding: clamp(2.5rem, 5vw, 5rem);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+    .testi-featured-photo {
+      aspect-ratio: 4/5;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .testi-featured-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .testi-featured-content .stars {
+      font-size: 1.1rem;
+      color: #D4845C;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+    .testi-featured-content blockquote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      line-height: 1.35;
+      font-variation-settings: "opsz" 144, "SOFT" 80;
+      margin-bottom: 2rem;
+      color: var(--cream);
+    }
+    .testi-featured-content .client-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+    }
+    .testi-featured-content .client-detail {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(250,247,241,0.5);
+    }
+    .testi-featured-content .property-tag {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(250,247,241,0.2);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(250,247,241,0.6);
+    }
+
+    /* Grid testimonials */
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .testi-card {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: all 0.4s var(--ease);
+    }
+    .testi-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -20px rgba(139, 58, 31, 0.15);
+    }
+    .testi-card .stars {
+      font-size: 0.9rem;
+      color: #D4845C;
+      letter-spacing: 0.1em;
+    }
+    .testi-card blockquote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      line-height: 1.45;
+      font-variation-settings: "opsz" 144, "SOFT" 60;
+      color: var(--ink);
+      flex: 1;
+    }
+    .testi-card .client {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+    }
+    .testi-card .client-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--bg-alt);
+      flex-shrink: 0;
+    }
+    .testi-card .client-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .testi-card .client-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+    .testi-card .client-detail {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .testi-card .property-ref {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 0.75rem;
+    }
+
+    /* Video testimonials strip */
+    .video-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .video-card {
+      position: relative;
+      aspect-ratio: 9/16;
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--bg-alt);
+      cursor: pointer;
+    }
+    .video-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 1s var(--ease);
+    }
+    .video-card:hover img { transform: scale(1.04); }
+    .video-card .video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,26,23,0.75) 0%, transparent 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+    }
+    .video-card .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(250,247,241,0.9);
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      color: var(--ink);
+      transition: all 0.3s var(--ease);
+    }
+    .video-card:hover .play-btn {
+      background: var(--accent);
+      color: var(--cream);
+      transform: translate(-50%,-50%) scale(1.1);
+    }
+    .video-card .video-meta {
+      color: var(--cream);
+    }
+    .video-card .video-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .video-card .video-detail {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(250,247,241,0.65);
+    }
+
+    /* Rating summary bar */
+    .rating-summary {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 3rem;
+      align-items: center;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 2.5rem 3rem;
+      margin-bottom: 3rem;
+    }
+    .rating-big {
+      text-align: center;
+    }
+    .rating-big .score {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+    .rating-big .stars {
+      font-size: 1.1rem;
+      color: #D4845C;
+      margin: 0.5rem 0;
+    }
+    .rating-big .total {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .rating-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .rating-bar-row {
+      display: grid;
+      grid-template-columns: 3rem 1fr 2.5rem;
+      gap: 0.75rem;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .bar-track {
+      height: 4px;
+      background: var(--line);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 100px;
+    }
+
+    @media (max-width: 768px) {
+      .testi-featured { grid-template-columns: 1fr; }
+      .testi-featured-photo { aspect-ratio: 16/9; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .video-strip { grid-template-columns: 1fr; }
+      .rating-summary { grid-template-columns: 1fr; gap: 2rem; }
+      .testi-hero-stats { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .testi-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="home.html" class="logo">
+        <span class="logo-mark">A</span>
+        <span class="logo-text">
+          <strong>AKAI</strong>
+          <small>Properti</small>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="home.html">Beranda</a></li>
+        <li><a href="properties.html">Properti</a></li>
+        <li><a href="artikel.html">Artikel</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        <li><a href="testimoni.html" class="active">Testimoni</a></li>
+      </ul>
+      <a href="konsultasi.html" class="nav-cta">Konsultasi <span>→</span></a>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="container">
+      <div class="eyebrow reveal">— Suara Klien Kami</div>
+      <h1 class="display reveal">
+        Cerita nyata dari<br>
+        orang-orang yang<br>
+        sudah <em>percaya kami.</em>
+      </h1>
+      <p class="reveal">
+        Lebih dari 450 transaksi. Lebih dari 98% datang dari repeat buyer dan
+        referral. Ini bukan sekadar angka — ini cerita kehidupan yang terus
+        kami jaga dengan bangga.
+      </p>
+
+      <div class="testi-hero-stats reveal">
+        <div class="testi-stat">
+          <span class="num">4.9</span>
+          <span class="lbl">Rating Rata-rata</span>
+        </div>
+        <div class="testi-stat">
+          <span class="num">98%</span>
+          <span class="lbl">Repeat & Referral</span>
+        </div>
+        <div class="testi-stat">
+          <span class="num">450+</span>
+          <span class="lbl">Transaksi Selesai</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== FEATURED TESTIMONIAL ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow reveal" style="margin-bottom:2rem;">— Kisah Unggulan</div>
+      <div class="testi-featured reveal">
+        <div class="testi-featured-photo">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Kevin Hartono">
+        </div>
+        <div class="testi-featured-content">
+          <div class="stars">★★★★★</div>
+          <blockquote>
+            "Saya investor properti sejak 2010 dan sudah bekerja sama dengan
+            banyak agensi. AKAI adalah yang pertama di mana saya merasa tidak
+            harus mengecek ulang setiap klaim mereka — karena semuanya sudah
+            transparan dari awal. Villa saya di Uluwatu sekarang ROI-nya 13%
+            per tahun. Terbaik."
+          </blockquote>
+          <div class="client-name">Kevin Hartono</div>
+          <div class="client-detail">Investor · Jakarta</div>
+          <span class="property-tag">Veyana Villa, Bingin — Rp 5,0 M</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RATING SUMMARY ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="rating-summary reveal">
+        <div class="rating-big">
+          <div class="score">4.9</div>
+          <div class="stars">★★★★★</div>
+          <div class="total">dari 450+ ulasan</div>
+        </div>
+        <div class="rating-bars">
+          <div class="rating-bar-row">
+            <span>5 ★</span>
+            <div class="bar-track"><div class="bar-fill" style="width:92%"></div></div>
+            <span>92%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>4 ★</span>
+            <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
+            <span>6%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>3 ★</span>
+            <div class="bar-track"><div class="bar-fill" style="width:2%"></div></div>
+            <span>2%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>2 ★</span>
+            <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+            <span>0%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>1 ★</span>
+            <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+            <span>0%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIAL GRID ===== -->
+  <section class="section" style="background:var(--bg-alt); padding-top:3rem;">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="left">
+          <div class="eyebrow">— Ulasan Klien</div>
+          <h2 style="margin-top:0.75rem;">Dari pembeli, investor,<br><em>dan keluarga mereka.</em></h2>
+        </div>
+      </div>
+
+      <div class="testi-grid">
+
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>
+            "Proses beli villa pertama saya di Bali jauh lebih mudah dari yang
+            saya bayangkan. Tim AKAI guided saya dari awal sampai serah terima
+            kunci — termasuk urus semua dokumen legal-nya."
+          </blockquote>
+          <div class="client">
+            <div class="client-avatar">
+              <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80" alt="Rina Dewi">
+            </div>
+            <div>
+              <div class="client-name">Rina Dewi</div>
+              <div class="client-detail">First-time Buyer · Surabaya</div>
+            </div>
+          </div>
+          <div class="property-ref">↳ Kazumi Villa, Ungasan</div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>
+            "Saya dari Singapura dan proses remote-nya lancar sekali. Video
+            walkthrough sangat detail, due diligence-nya profesional. Dua
+            bulan setelah akad, villa sudah bisa disewakan. Luar biasa."
+          </blockquote>
+          <div class="client">
+            <div class="client-avatar">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80" alt="James Tan">
+            </div>
+            <div>
+              <div class="client-name">James Tan</div>
+              <div class="client-detail">Investor · Singapura</div>
+            </div>
+          </div>
+          <div class="property-ref">↳ Joraya Retreat, Mengwi</div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>
+            "AKAI bukan sekadar agensi — mereka menjadi advisor jangka panjang
+            kami. Setelah beli villa pertama, kami beli dua properti lagi
+            dalam dua tahun. Kepercayaan itu dibangun pelan-pelan, tapi solid."
+          </blockquote>
+          <div class="client">
+            <div class="client-avatar">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80" alt="Suci Rahayu">
+            </div>
+            <div>
+              <div class="client-name">Suci & Bagas Rahayu</div>
+              <div class="client-detail">Investor · Jakarta</div>
+            </div>
+          </div>
+          <div class="property-ref">↳ 3 Properti · Bali & Surabaya</div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>
+            "Yang paling saya appreciate adalah kejujuran mereka. Saat ada
+            satu listing yang ternyata punya masalah hukum kecil, mereka
+            langsung kasih tahu sebelum saya tandatangan apapun. Rare banget
+            itu di industri ini."
+          </blockquote>
+          <div class="client">
+            <div class="client-avatar">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt="Hendra Santoso">
+            </div>
+            <div>
+              <div class="client-name">Hendra Santoso</div>
+              <div class="client-detail">Business Owner · Bandung</div>
+            </div>
+          </div>
+          <div class="property-ref">↳ Kavling Pererenan, Bali</div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>
+            "Saya mencari commercial space untuk restoran kedua saya. Tim
+            AKAI paham kebutuhan bisnis saya dan menemukan Soleri Shop yang
+            persis sesuai. Omzet bulan pertama sudah melampaui target."
+          </blockquote>
+          <div class="client">
+            <div class="client-avatar">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80" alt="Maya Sari">
+            </div>
+            <div>
+              <div class="client-name">Maya Sari</div>
+              <div class="client-detail">Restaurateur · Bali</div>
+            </div>
+          </div>
+          <div class="property-ref">↳ Soleri Shop, Bingin</div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="stars">★★★★☆</div>
+          <blockquote>
+            "Prosesnya sedikit lebih lama dari ekspektasi awal karena ada
+            delay di notaris. Tapi tim AKAI selalu update dan transparan.
+            Pada akhirnya properti saya sudah cashflow positif dari bulan ke-6."
+          </blockquote>
+          <div class="client">
+            <div class="client-avatar">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80" alt="Fajar Nugroho">
+            </div>
+            <div>
+              <div class="client-name">Fajar Nugroho</div>
+              <div class="client-detail">Investor · Surabaya</div>
+            </div>
+          </div>
+          <div class="property-ref">↳ Kaielo Villas, Balangan</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEO TESTIMONIALS ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="left">
+          <div class="eyebrow">— Video Cerita</div>
+          <h2 style="margin-top:0.75rem;">Lebih dari<br><em>sekedar kata-kata.</em></h2>
+        </div>
+      </div>
+
+      <div class="video-strip">
+        <div class="video-card reveal">
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="Kevin Testimonial">
+          <div class="play-btn">▶</div>
+          <div class="video-overlay">
+            <div class="video-meta">
+              <div class="video-name">Kevin Hartono</div>
+              <div class="video-detail">Investor · Jakarta · Veyana Villa</div>
+            </div>
+          </div>
+        </div>
+        <div class="video-card reveal">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Rina Testimonial">
+          <div class="play-btn">▶</div>
+          <div class="video-overlay">
+            <div class="video-meta">
+              <div class="video-name">Rina Dewi</div>
+              <div class="video-detail">First-time Buyer · Surabaya · Kazumi Villa</div>
+            </div>
+          </div>
+        </div>
+        <div class="video-card reveal">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="James Testimonial">
+          <div class="play-btn">▶</div>
+          <div class="video-overlay">
+            <div class="video-meta">
+              <div class="video-name">James Tan</div>
+              <div class="video-detail">Investor · Singapura · Joraya Retreat</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA STRIP ===== -->
+  <section class="cta-strip">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="display">Jadilah bagian dari<br><em>cerita selanjutnya.</em></h2>
+        <p>Lebih dari 450 keluarga sudah mempercayakan perjalanan properti
+        mereka kepada kami. Siap untuk mulai?</p>
+        <a href="konsultasi.html" class="btn btn-primary">
+          Mulai Konsultasi <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="home.html" class="logo">
+            <span class="logo-mark">A</span>
+            <span class="logo-text"><strong>AKAI</strong><small>Properti</small></span>
+          </a>
+          <p>Agensi properti yang menghadirkan villa, residence, dan lahan
+          pilihan di lokasi-lokasi terbaik Indonesia.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Menu</h5>
+          <ul>
+            <li><a href="home.html">Beranda</a></li>
+            <li><a href="properties.html">Properti</a></li>
+            <li><a href="artikel.html">Artikel</a></li>
+            <li><a href="about.html">Tentang</a></li>
+            <li><a href="testimoni.html">Testimoni</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Kontak</h5>
+          <ul>
+            <li>hello@akaiproperti.id</li>
+            <li>+62 851 0000 0000</li>
+            <li>Surabaya · Jakarta · Bali</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Newsletter</h5>
+          <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:1rem;">
+            Properti baru, insight pasar, langsung ke inbox Anda.
+          </p>
+          <form style="display:flex; gap:0.5rem;">
+            <input type="email" placeholder="Email Anda" style="flex:1; padding:0.75rem; background:transparent; border:1px solid var(--line); border-radius:100px; font-family:inherit; outline:none;">
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 AKAI Properti — Hak cipta dilindungi.</div>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artikel — AKAI Properti</title>
+  <meta name="description" content="Insight, analisis pasar, dan panduan investasi properti dari tim AKAI Properti.">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Article page styles */
+    .artikel-featured {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      margin-bottom: 5rem;
+    }
+    .artikel-featured-img {
+      aspect-ratio: 16/10;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .artikel-featured-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 1s var(--ease);
+    }
+    .artikel-featured:hover .artikel-featured-img img {
+      transform: scale(1.03);
+    }
+    .artikel-featured-content .tag {
+      display: inline-block;
+      margin-bottom: 1.25rem;
+      padding: 0.4rem 1rem;
+      background: var(--accent);
+      color: var(--cream);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .artikel-featured-content h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      line-height: 1.05;
+      margin-bottom: 1.25rem;
+    }
+    .artikel-featured-content h2 em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+    .artikel-featured-content p {
+      color: var(--ink-soft);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+    .artikel-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .artikel-meta .author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--bg-alt);
+      flex-shrink: 0;
+    }
+    .artikel-meta .author-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .artikel-meta .author-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+    .artikel-meta .artikel-date {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .artikel-meta .dot {
+      color: var(--line);
+    }
+    .read-time {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Article card grid */
+    .artikel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .artikel-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      cursor: pointer;
+    }
+    .artikel-card-img {
+      aspect-ratio: 16/10;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      background: var(--bg-alt);
+    }
+    .artikel-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 1s var(--ease);
+    }
+    .artikel-card:hover .artikel-card-img img {
+      transform: scale(1.05);
+    }
+    .artikel-card .tag {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      padding: 0.35rem 0.85rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .artikel-card h3 {
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      line-height: 1.1;
+      margin-bottom: 0.85rem;
+    }
+    .artikel-card h3 em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+    .artikel-card p {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+      flex: 1;
+    }
+    .artikel-card .artikel-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+      margin-top: auto;
+    }
+    .artikel-card .artikel-foot .read-link {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      transition: letter-spacing 0.3s var(--ease);
+    }
+    .artikel-card:hover .read-link {
+      letter-spacing: 0.2em;
+    }
+
+    /* Full article content */
+    .artikel-body {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .artikel-body h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 2.5rem 0 1rem;
+    }
+    .artikel-body h2 em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+    .artikel-body p {
+      color: var(--ink-soft);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+    .artikel-body .callout {
+      background: var(--cream);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.45;
+      font-variation-settings: "opsz" 144, "SOFT" 80;
+    }
+    .artikel-body .key-points {
+      background: var(--bg-alt);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+    }
+    .artikel-body .key-points h4 {
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .artikel-body .key-points ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .artikel-body .key-points ul li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .artikel-body .key-points ul li::before {
+      content: "→";
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Article separator */
+    .artikel-sep {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 5rem 0;
+    }
+
+    /* Article number heading */
+    .artikel-number {
+      font-family: var(--font-display);
+      font-size: 6rem;
+      color: var(--line);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: -1rem;
+    }
+
+    @media (max-width: 768px) {
+      .artikel-featured { grid-template-columns: 1fr; }
+      .artikel-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .artikel-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="home.html" class="logo">
+        <span class="logo-mark">A</span>
+        <span class="logo-text">
+          <strong>AKAI</strong>
+          <small>Properti</small>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="home.html">Beranda</a></li>
+        <li><a href="properties.html">Properti</a></li>
+        <li><a href="artikel.html" class="active">Artikel</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        <li><a href="testimoni.html">Testimoni</a></li>
+      </ul>
+      <a href="konsultasi.html" class="nav-cta">Konsultasi <span>→</span></a>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="container">
+      <div class="eyebrow reveal">— Insight & Analisis</div>
+      <h1 class="display reveal">
+        Properti bukan soal<br>
+        bata dan semen —<br>
+        tapi soal <em>keputusan.</em>
+      </h1>
+      <p class="reveal">
+        Perspektif dari tim AKAI: tren pasar, strategi investasi,
+        dan panduan praktis agar setiap keputusan properti Anda
+        bertumpu pada informasi yang solid.
+      </p>
+    </div>
+  </header>
+
+  <!-- ===== ARTICLE 1 — FEATURED ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow reveal" style="margin-bottom: 2.5rem;">— Artikel 01</div>
+
+      <div class="artikel-featured reveal">
+        <div class="artikel-featured-img">
+          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80" alt="Mengapa Bali Masih Jadi Pilihan Utama Investor Properti">
+        </div>
+        <div class="artikel-featured-content">
+          <span class="tag">Investasi</span>
+          <div class="artikel-meta">
+            <div class="author-avatar">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt="Adit Kurniawan">
+            </div>
+            <div>
+              <div class="author-name">Adit Kurniawan</div>
+              <div class="artikel-date">12 Mei 2026 <span class="dot">·</span> <span class="read-time">8 mnt baca</span></div>
+            </div>
+          </div>
+          <h2>Mengapa Bali Masih Jadi <em>Pilihan Utama</em> Investor Properti di 2026</h2>
+          <p>
+            Di tengah ketidakpastian pasar global, Bali terus membuktikan
+            diri sebagai salah satu destinasi investasi properti yang paling
+            konsisten menghasilkan return. Ini bukan keberuntungan —
+            ada faktor struktural yang menopangnya.
+          </p>
+          <a href="#artikel-1" class="btn btn-outline" style="font-size:0.85rem; padding:0.8rem 1.4rem;">
+            Baca Selengkapnya <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Full Article 1 -->
+      <div class="artikel-body" id="artikel-1">
+        <div class="artikel-number">01</div>
+        <h2>Bali Bukan Sekadar <em>Destinasi Wisata</em></h2>
+        <p>
+          Selama lebih dari satu dekade, Bali telah bertransformasi dari sekadar
+          tujuan liburan menjadi hub kehidupan global. Komunitas digital nomad,
+          entrepreneur internasional, dan keluarga ekspatriat terus bertumbuh —
+          dan mereka semua butuh tempat tinggal yang layak.
+        </p>
+        <p>
+          Data dari AKAI Properti menunjukkan bahwa 43% pembeli kami di Bali
+          selama 2025 adalah pembeli asing yang bermaksud tinggal jangka
+          panjang atau menjadikan properti sebagai income stream utama.
+          Angka ini naik dari 31% pada 2022.
+        </p>
+
+        <div class="callout">
+          "Bali bukan lagi tempat untuk berlibur — ia adalah tempat untuk
+          memulai hidup baru. Dan itu yang membuat demand-nya berbeda dari
+          destinasi wisata biasa."
+        </div>
+
+        <h2>Tiga Faktor yang <em>Menopang Pasar</em></h2>
+        <p>
+          Ada tiga pilar utama yang membuat Bali tetap relevan sebagai
+          destinasi investasi, bahkan saat pasar global bergolak:
+        </p>
+
+        <div class="key-points">
+          <h4>Faktor Pendorong Pasar Bali</h4>
+          <ul>
+            <li>Infrastruktur yang terus berkembang: jalan baru, bandara yang diperluas, dan konektivitas internet berkecepatan tinggi di hampir seluruh penjuru pulau.</li>
+            <li>Regulasi yang semakin ramah investor asing, termasuk opsi hak pakai yang diperpanjang hingga 80 tahun.</li>
+            <li>Tingkat okupansi villa premium yang stabil di kisaran 68–75% sepanjang tahun, menghasilkan yield sewa 10–14% per tahun.</li>
+          </ul>
+        </div>
+
+        <h2>Kawasan Mana yang <em>Paling Menjanjikan?</em></h2>
+        <p>
+          Uluwatu dan Bingin masih menjadi primadona untuk investasi yield
+          tinggi berkat popularitasnya di kalangan wisatawan premium dan
+          digital nomad. Harga per meter persegi memang sudah lebih tinggi,
+          tapi permintaan sewanya pun sangat kuat.
+        </p>
+        <p>
+          Sementara itu, area seperti Pererenan dan Cemagi di utara Canggu
+          mulai menarik perhatian sebagai zona pengembangan baru. Harga masih
+          relatif terjangkau, tapi infrastrukturnya sudah cukup matang untuk
+          mendukung hunian berkualitas. Ini adalah window of opportunity yang
+          masih terbuka — meski tidak untuk selamanya.
+        </p>
+        <p>
+          Bagi investor yang ingin masuk ke pasar Bali dengan budget lebih
+          moderat, kawasan seperti Ubud dan Tabanan juga mulai menunjukkan
+          tren kenaikan yang menarik, seiring tumbuhnya komunitas wellness
+          dan retreat internasional di sana.
+        </p>
+
+        <div class="key-points">
+          <h4>Kesimpulan</h4>
+          <ul>
+            <li>Bali tetap menjadi pasar properti dengan fundamental kuat di Asia Tenggara untuk jangka panjang.</li>
+            <li>Pilih kawasan berdasarkan tujuan: yield tinggi (Uluwatu/Bingin), harga pertumbuhan (Pererenan/Cemagi), atau lifestyle (Ubud).</li>
+            <li>Selalu pastikan due diligence legal dilakukan menyeluruh sebelum komitmen pembelian.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="artikel-sep">
+
+  <!-- ===== ARTICLE 2 ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="eyebrow reveal" style="margin-bottom: 2.5rem;">— Artikel 02</div>
+
+      <div class="artikel-featured reveal" style="direction: rtl;">
+        <div class="artikel-featured-img" style="direction:ltr;">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80" alt="Panduan Membeli Properti Pertama">
+        </div>
+        <div class="artikel-featured-content" style="direction:ltr;">
+          <span class="tag">Panduan Pembeli</span>
+          <div class="artikel-meta">
+            <div class="author-avatar">
+              <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80" alt="Sarah Mahendra">
+            </div>
+            <div>
+              <div class="author-name">Sarah Mahendra</div>
+              <div class="artikel-date">28 April 2026 <span class="dot">·</span> <span class="read-time">11 mnt baca</span></div>
+            </div>
+          </div>
+          <h2>7 Hal yang Harus Anda Periksa Sebelum <em>Tandatangan</em> Akta Properti</h2>
+          <p>
+            Membeli properti adalah salah satu keputusan finansial terbesar
+            dalam hidup. Tapi banyak pembeli — terutama yang pertama kali —
+            terburu nafsu dan melewatkan langkah-langkah kritis yang
+            justru bisa menyelamatkan ratusan juta rupiah.
+          </p>
+          <a href="#artikel-2" class="btn btn-outline" style="font-size:0.85rem; padding:0.8rem 1.4rem;">
+            Baca Selengkapnya <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Full Article 2 -->
+      <div class="artikel-body" id="artikel-2">
+        <div class="artikel-number">02</div>
+        <h2>Jangan Biarkan Euforia <em>Mengalahkan Akal Sehat</em></h2>
+        <p>
+          Saat kita jatuh cinta pada sebuah properti, otak kita cenderung
+          mencari alasan untuk segera membelinya, bukan alasan untuk
+          berhati-hati. Ini adalah bias psikologis yang normal — tapi
+          dalam konteks properti, ia bisa sangat mahal harganya.
+        </p>
+        <p>
+          Sebagai tim yang sudah mendampingi lebih dari 450 transaksi,
+          kami melihat pola yang berulang: pembeli yang terburu-buru
+          hampir selalu menemukan masalah di kemudian hari. Pembeli yang
+          sabar dan sistematis hampir selalu lebih puas.
+        </p>
+
+        <div class="key-points">
+          <h4>7 Pemeriksaan Wajib Sebelum Akad</h4>
+          <ul>
+            <li><strong>Sertifikat & legalitas tanah</strong> — Pastikan sertifikat asli, bukan fotokopi, dan tidak sedang dalam sengketa atau dijadikan agunan kredit.</li>
+            <li><strong>Kesesuaian luas dan batas tanah</strong> — Bandingkan ukuran fisik di lapangan dengan yang tertera di sertifikat. Minta bantuan surveyor independen.</li>
+            <li><strong>Izin Mendirikan Bangunan (IMB/PBG)</strong> — Pastikan ada, masih berlaku, dan sesuai dengan spesifikasi bangunan yang ada.</li>
+            <li><strong>Tunggakan PBB dan utilitas</strong> — Minta bukti pembayaran PBB 5 tahun terakhir dan pastikan tidak ada tunggakan listrik, air, atau iuran kompleks.</li>
+            <li><strong>Status zonasi dan tata ruang</strong> — Terutama penting untuk properti komersial atau tanah. Cek RDTR (Rencana Detail Tata Ruang) wilayah setempat.</li>
+            <li><strong>Kondisi fisik bangunan</strong> — Periksa fondasi, atap, instalasi listrik dan plumbing, serta tanda-tanda keretakan struktural. Jangan hanya mengandalkan tampilan permukaan.</li>
+            <li><strong>Riwayat penjualan dan kepemilikan</strong> — Pastikan rantai kepemilikan jelas dan tidak ada klaim pihak ketiga yang belum terselesaikan.</li>
+          </ul>
+        </div>
+
+        <h2>Soal Notaris: <em>Siapa yang Memilih?</em></h2>
+        <p>
+          Salah satu pertanyaan yang sering muncul: apakah pembeli atau
+          penjual yang memilih notaris? Secara hukum, tidak ada aturan baku
+          — tapi kami selalu menyarankan agar pembeli aktif dalam pemilihan
+          notaris, karena notarislah yang akan melindungi kepentingan hukum
+          Anda dalam transaksi ini.
+        </p>
+        <p>
+          Pilih notaris yang berpengalaman di bidang properti, bukan hanya
+          notaris terdekat atau yang paling murah. Biaya notaris hanya
+          sebagian kecil dari nilai transaksi — ini bukan tempat untuk
+          berhemat.
+        </p>
+
+        <div class="callout">
+          "Satu lembar dokumen yang tidak diperiksa dengan teliti bisa
+          menjadi masalah yang membutuhkan bertahun-tahun untuk
+          diselesaikan di pengadilan."
+        </div>
+
+        <h2>Kapan Harus <em>Mundur?</em></h2>
+        <p>
+          Tidak semua properti yang terlihat bagus layak dibeli. Ada
+          beberapa tanda bahaya yang harus membuat Anda berhenti dan
+          berpikir ulang: penjual yang terburu-buru, harga yang terlalu
+          jauh di bawah pasar tanpa alasan jelas, atau dokumen yang
+          tidak lengkap "sementara sedang diurus."
+        </p>
+        <p>
+          Properti yang tepat tidak akan kabur hanya karena Anda
+          mengambil waktu dua minggu untuk melakukan due diligence.
+          Kalau penjual keberatan dengan proses pemeriksaan yang wajar,
+          itu sendiri sudah menjadi tanda bahaya yang serius.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="artikel-sep">
+
+  <!-- ===== ARTICLE 3 ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="eyebrow reveal" style="margin-bottom: 2.5rem;">— Artikel 03</div>
+
+      <div class="artikel-featured reveal">
+        <div class="artikel-featured-img">
+          <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1200&q=80" alt="Manajemen Villa Bali">
+        </div>
+        <div class="artikel-featured-content">
+          <span class="tag">Manajemen Aset</span>
+          <div class="artikel-meta">
+            <div class="author-avatar">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80" alt="Dian Kusuma">
+            </div>
+            <div>
+              <div class="author-name">Dian Kusuma</div>
+              <div class="artikel-date">5 April 2026 <span class="dot">·</span> <span class="read-time">9 mnt baca</span></div>
+            </div>
+          </div>
+          <h2>Dari Aset Diam ke Aset <em>Bekerja:</em> Panduan Manajemen Villa di Bali</h2>
+          <p>
+            Memiliki villa di Bali adalah satu hal. Membuatnya menghasilkan
+            return yang optimal adalah hal lain sama sekali. Banyak pemilik
+            villa yang puas dengan performa di bawah potensinya —
+            padahal dengan pengelolaan yang tepat, hasilnya bisa dua kali lipat.
+          </p>
+          <a href="#artikel-3" class="btn btn-outline" style="font-size:0.85rem; padding:0.8rem 1.4rem;">
+            Baca Selengkapnya <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Full Article 3 -->
+      <div class="artikel-body" id="artikel-3">
+        <div class="artikel-number">03</div>
+        <h2>Masalah Klasik: <em>Villa Indah, Yield Mengecewakan</em></h2>
+        <p>
+          Kami sering bertemu pemilik villa yang frustrasi: properti mereka
+          indah, lokasinya strategis, tapi pendapatan sewanya tidak sesuai
+          ekspektasi. Setelah kami telusuri, masalahnya hampir selalu bukan
+          pada propertinya — tapi pada cara pengelolaannya.
+        </p>
+        <p>
+          Pasar sewa villa di Bali saat ini sangat kompetitif. Platform
+          seperti Airbnb dan Booking.com membanjiri listing dari seluruh
+          penjuru pulau. Untuk menonjol dan mendapatkan okupansi tinggi,
+          dibutuhkan strategi yang lebih dari sekadar "upload foto dan tunggu."
+        </p>
+
+        <div class="key-points">
+          <h4>Lima Pilar Manajemen Villa yang Menghasilkan</h4>
+          <ul>
+            <li><strong>Pricing dinamis</strong> — Harga sewa harus menyesuaikan musim, event lokal, dan kompetitor secara real-time. Jangan pasang harga flat sepanjang tahun.</li>
+            <li><strong>Foto & presentasi profesional</strong> — Investasi dalam fotografer profesional dan virtual tour 360°. First impression di platform digital adalah segalanya.</li>
+            <li><strong>Review management</strong> — Respons cepat dan personal terhadap setiap review, positif maupun negatif, secara signifikan meningkatkan konversi pemesanan.</li>
+            <li><strong>Maintenance preventif</strong> — Jadwal perawatan rutin lebih murah daripada perbaikan darurat, dan menjaga rating tetap tinggi.</li>
+            <li><strong>Diversifikasi saluran distribusi</strong> — Jangan hanya mengandalkan satu platform. Kombinasikan OTA (Online Travel Agent), direct booking, dan agen perjalanan lokal.</li>
+          </ul>
+        </div>
+
+        <h2>Manajemen Mandiri vs. <em>Hire Property Manager</em></h2>
+        <p>
+          Pertanyaan yang selalu muncul: lebih baik kelola sendiri atau
+          pakai jasa property manager? Jawabannya tergantung pada seberapa
+          banyak waktu dan energi yang Anda siapkan, serta seberapa jauh
+          Anda dari lokasi properti.
+        </p>
+        <p>
+          Untuk pemilik yang tinggal di luar Bali atau luar negeri, menggunakan
+          property manager yang berpengalaman hampir selalu lebih masuk akal.
+          Biaya manajemen biasanya 15–25% dari pendapatan kotor — tapi
+          property manager yang baik bisa meningkatkan ocupansi cukup
+          untuk mengkompensasi biaya tersebut.
+        </p>
+
+        <div class="callout">
+          "Villa yang dikelola dengan baik di Uluwatu bisa menghasilkan
+          pendapatan bersih Rp 600–900 juta per tahun. Villa yang
+          dikelola asal-asalan di lokasi yang sama mungkin hanya
+          Rp 200–300 juta. Selisihnya adalah soal manajemen."
+        </div>
+
+        <h2>Peran Teknologi dalam <em>Maksimalkan Yield</em></h2>
+        <p>
+          Pemilik villa yang cerdas kini memanfaatkan tools berbasis data
+          untuk mengoptimalkan strategi mereka: dari software channel manager
+          yang menyinkronkan ketersediaan di semua platform secara otomatis,
+          hingga tools analitik yang membantu menetapkan harga optimal
+          berdasarkan permintaan pasar real-time.
+        </p>
+        <p>
+          Ini bukan lagi domain eksklusif hotel besar. Dengan biaya
+          berlangganan yang relatif terjangkau, pemilik villa individual
+          pun bisa bermain di level yang sama. Dan di pasar yang semakin
+          kompetitif, inilah yang membedakan yang sekadar survive dari
+          yang benar-benar thriving.
+        </p>
+
+        <div class="key-points">
+          <h4>Target Realistis untuk Villa Premium di Bali</h4>
+          <ul>
+            <li>Ocupansi tahunan: 65–75% (villa yang dikelola dengan baik)</li>
+            <li>ADR (Average Daily Rate) untuk 2BR: USD 200–350/malam di high season</li>
+            <li>Gross yield: 12–16% dari nilai properti per tahun</li>
+            <li>Net yield setelah biaya operasional & manajemen: 8–12%</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA STRIP ===== -->
+  <section class="cta-strip">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="display">Siap menerapkan<br><em>insight ini?</em></h2>
+        <p>Diskusikan strategi properti Anda langsung dengan tim AKAI.
+        Konsultasi awal gratis — tanpa komitmen.</p>
+        <a href="konsultasi.html" class="btn btn-primary">
+          Jadwalkan Konsultasi <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="home.html" class="logo">
+            <span class="logo-mark">A</span>
+            <span class="logo-text"><strong>AKAI</strong><small>Properti</small></span>
+          </a>
+          <p>Agensi properti yang menghadirkan villa, residence, dan lahan
+          pilihan di lokasi-lokasi terbaik Indonesia.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Menu</h5>
+          <ul>
+            <li><a href="home.html">Beranda</a></li>
+            <li><a href="properties.html">Properti</a></li>
+            <li><a href="artikel.html">Artikel</a></li>
+            <li><a href="about.html">Tentang</a></li>
+            <li><a href="testimoni.html">Testimoni</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Kontak</h5>
+          <ul>
+            <li>hello@akaiproperti.id</li>
+            <li>+62 851 0000 0000</li>
+            <li>Surabaya · Jakarta · Bali</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Newsletter</h5>
+          <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:1rem;">
+            Properti baru, insight pasar, langsung ke inbox Anda.
+          </p>
+          <form style="display:flex; gap:0.5rem;">
+            <input type="email" placeholder="Email Anda" style="flex:1; padding:0.75rem; background:transparent; border:1px solid var(--line); border-radius:100px; font-family:inherit; outline:none;">
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 AKAI Properti — Hak cipta dilindungi.</div>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

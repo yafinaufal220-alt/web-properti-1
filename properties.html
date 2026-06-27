@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Properti — AKAI Properti</title>
+  <meta name="description" content="Jelajahi seluruh listing villa, residence, dan tanah pilihan AKAI Properti.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="home.html" class="logo">
+        <span class="logo-mark">A</span>
+        <span class="logo-text">
+          <strong>AKAI</strong>
+          <small>Properti</small>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="home.html">Beranda</a></li>
+        <li><a href="properties.html" class="active">Properti</a></li>
+        <li><a href="artikel.html">Artikel</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        <li><a href="testimoni.html">Testimoni</a></li>
+      </ul>
+      <a href="konsultasi.html" class="nav-cta">Konsultasi <span>→</span></a>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="container">
+      <div class="eyebrow reveal">— Katalog Properti</div>
+      <h1 class="display reveal">
+        Telusuri properti<br>
+        <em>terpilih kami.</em>
+      </h1>
+      <p class="reveal">
+        Dari villa di tepi tebing Uluwatu hingga residence modern di pusat
+        Surabaya — semua dipilih dengan kriteria yang sama: lokasi, desain,
+        dan potensi nilai jangka panjang.
+      </p>
+    </div>
+  </header>
+
+  <!-- ===== FILTER BAR ===== -->
+  <section style="padding: 3rem 0 0;">
+    <div class="container">
+      <form class="filter-bar reveal">
+        <div class="filter-field">
+          <label>Lokasi</label>
+          <select>
+            <option>Semua lokasi</option>
+            <option>Uluwatu</option>
+            <option>Canggu</option>
+            <option>Seminyak</option>
+            <option>Ubud</option>
+            <option>Surabaya</option>
+            <option>Jakarta</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label>Tipe</label>
+          <select>
+            <option>Semua tipe</option>
+            <option>Villa</option>
+            <option>Apartment</option>
+            <option>Residence</option>
+            <option>Tanah</option>
+            <option>Commercial</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label>Harga Min.</label>
+          <input type="text" placeholder="Rp 1 M">
+        </div>
+        <div class="filter-field">
+          <label>Harga Max.</label>
+          <input type="text" placeholder="Rp 10 M">
+        </div>
+        <button type="submit" class="filter-submit">Cari →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== ALL PROPERTIES ===== -->
+  <section class="section" style="padding-top:3rem;">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="left">
+          <div class="eyebrow">— Menampilkan 9 dari 450 properti</div>
+          <h2 style="margin-top:0.75rem; font-size:clamp(1.5rem,3vw,2.25rem);">
+            Pilihan untuk <em>Anda.</em>
+          </h2>
+        </div>
+        <div style="display:flex; gap:0.75rem; align-items:center;">
+          <span style="font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted);">Urutkan:</span>
+          <select style="background:transparent; border:1px solid var(--line); padding:0.5rem 1rem; border-radius:100px; font-family:inherit; font-size:0.85rem;">
+            <option>Terbaru</option>
+            <option>Harga terendah</option>
+            <option>Harga tertinggi</option>
+            <option>Populer</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="properties-grid">
+        <article class="property-card reveal">
+          <div class="property-media">
+            <span class="property-badge">Off Plan</span>
+            <button class="property-fav" aria-label="Simpan">♡</button>
+            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" alt="Kazumi Villa">
+          </div>
+          <div class="property-meta">
+            <span>🏠 121 m²</span><span>◫ 150 m²</span><span>25 thn</span>
+          </div>
+          <h3 class="property-title">Kazumi Villa — 2BR Kontemporer</h3>
+          <p class="property-location">Ungasan, Bali</p>
+          <div class="property-foot">
+            <div class="property-price"><small>Mulai dari</small>Rp 3,1 M</div>
+            <span class="property-arrow">↗</span>
+          </div>
+        </article>
+
+        <article class="property-card reveal">
+          <div class="property-media">
+            <span class="property-badge">Ready</span>
+            <button class="property-fav" aria-label="Simpan">♡</button>
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Soleri Shop">
+          </div>
+          <div class="property-meta">
+            <span>🏠 110 m²</span><span>◫ 210 m²</span><span>SHM</span>
+          </div>
+          <h3 class="property-title">Soleri Shop — Commercial Space</h3>
+          <p class="property-location">Bingin, Uluwatu</p>
+          <div class="property-foot">
+            <div class="property-price"><small>Mulai dari</small>Rp 4,3 M</div>
+            <span class="property-arrow">↗</span>
+          </div>
+        </article>
+
+        <article class="property-card reveal">
+          <div class="property-media">
+            <span class="property-badge">Premium</span>
+            <button class="property-fav" aria-label="Simpan">♡</button>
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Joraya Villa">
+          </div>
+          <div class="property-meta">
+            <span>🏠 245 m²</span><span>◫ 285 m²</span><span>28 thn</span>
+          </div>
+          <h3 class="property-title">Joraya — Modern 2BR Retreat</h3>
+          <p class="property-location">Mengwi, Bali</p>
+          <div class="property-foot">
+            <div class="property-price"><small>Mulai dari</small>Rp 4,5 M</div>
+            <span class="property-arrow">↗</span>
+          </div>
+        </article>
+
+        <article class="property-card reveal">
+          <div class="property-media">
+            <span class="property-badge">Move-in Soon</span>
+            <button class="property-fav" aria-label="Simpan">♡</button>
+            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80" alt="Kaielo Villa">
+          </div>
+          <div class="property-meta">
+            <span>🏠 105 m²</span><span>◫ 135 m²</span><span>50 thn</span>
+          </div>
+          <h3 class="property-title">Kaielo Villas — Tropical Retreat</h3>
+          <p class="property-location">Balangan, Bali</p>
+          <div class="property-foot">
+            <div class="property-price"><small>Mulai dari</small>Rp 3,6 M</div>
+            <span class="property-arrow">↗</span>
+          </div>
+        </article>
+
+        <article class="property-card reveal">
+          <div class="property-media">
+            <span class="property-badge">Off Plan</span>
+            <button class="property-fav" aria-label="Simpan">♡</button>
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80" alt="Mavira Bingin">
+          </div>
+          <div class="property-meta">
+            <span>🏠 71 m²</span><span>◫ 84 m²</span><span>29+ thn</span>
+          </div>
+          <h3 class="property-title">Mavira — Stylish Leasehold</h3>
+          <p class="property-location">Bingin, Bali</p>
+          <div class="property-foot">
+            <div class="property-price"><small>Mulai dari</small>Rp 2,8 M</div>
+            <span class="property-arrow">↗</span>
+          </div>
+        </article>
+
+        <article class="property-card reveal">
+          <div class="property-media">
+            <span class="property-badge">Premium</span>
+            <button class="property-fav" aria-label="Simpan">♡</button>
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80" alt="Veyana Villa">
+          </div>
+          <div class="property-meta">
+            <span>🏠 200 m²</span><span>◫ 135 m²</span><span>22+ thn</span>
+          </div>
+          <h3 class="property-title">Veyana Villa — Private Pool</h3>
+          <p class="property-location">Bingin, Bali</p>
+          <div class="property-foot">
+            <div class="property-price"><small>Mulai dari</small>Rp 5,0 M</div>
+            <span class="property-arrow">↗</span>
+          </div>
+        </article>
+
+        <article class="property-card reveal">
+          <div class="property-media">
+            <span class="property-badge">Hot Deal</span>
+            <button class="property-fav" aria-label="Simpan">♡</button>
+            <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80" alt="Tirta House">
+          </div>
+          <div class="property-meta">
+            <span>🏠 180 m²</span><span>◫ 220 m²</span><span>SHM</span>
+          </div>
+          <h3 class="property-title">Tirta House — Modern Family Home</h3>
+          <p class="property-location">Surabaya Barat</p>
+          <div class="property-foot">
+            <div class="property-price"><small>Mulai dari</small>Rp 2,4 M</div>
+            <span class="property-arrow">↗</span>
+          </div>
+        </article>
+
+        <article class="property-card reveal">
+          <div class="property-media">
+            <span class="property-badge">New</span>
+            <button class="property-fav" aria-label="Simpan">♡</button>
+            <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80" alt="Senja Loft">
+          </div>
+          <div class="property-meta">
+            <span>🏠 95 m²</span><span>◫ —</span><span>SHM</span>
+          </div>
+          <h3 class="property-title">Senja Loft — Sky View Apartment</h3>
+          <p class="property-location">Jakarta Selatan</p>
+          <div class="property-foot">
+            <div class="property-price"><small>Mulai dari</small>Rp 3,9 M</div>
+            <span class="property-arrow">↗</span>
+          </div>
+        </article>
+
+        <article class="property-card reveal">
+          <div class="property-media">
+            <span class="property-badge">Land</span>
+            <button class="property-fav" aria-label="Simpan">♡</button>
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80" alt="Kavling Pererenan">
+          </div>
+          <div class="property-meta">
+            <span>🏠 —</span><span>◫ 500 m²</span><span>SHM</span>
+          </div>
+          <h3 class="property-title">Kavling Pererenan — Investment Land</h3>
+          <p class="property-location">Pererenan, Bali</p>
+          <div class="property-foot">
+            <div class="property-price"><small>Mulai dari</small>Rp 6,2 M</div>
+            <span class="property-arrow">↗</span>
+          </div>
+        </article>
+      </div>
+
+      <div style="text-align:center; margin-top:4rem;" class="reveal">
+        <button class="btn btn-outline">Muat Lebih Banyak →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA STRIP ===== -->
+  <section class="cta-strip">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="display">Tidak menemukan<br><em>yang Anda cari?</em></h2>
+        <p>Kami punya akses ke listing off-market. Beri tahu kami kriteria Anda,
+        biar tim kami yang mencarikan.</p>
+        <a href="konsultasi.html" class="btn btn-primary">
+          Sampaikan Kebutuhan <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="home.html" class="logo">
+            <span class="logo-mark">A</span>
+            <span class="logo-text"><strong>AKAI</strong><small>Properti</small></span>
+          </a>
+          <p>Agensi properti yang menghadirkan villa, residence, dan lahan
+          pilihan di lokasi-lokasi terbaik Indonesia.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Menu</h5>
+          <ul>
+            <li><a href="home.html">Beranda</a></li>
+            <li><a href="properties.html">Properti</a></li>
+            <li><a href="artikel.html">Artikel</a></li>
+            <li><a href="about.html">Tentang</a></li>
+            <li><a href="testimoni.html">Testimoni</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Kontak</h5>
+          <ul>
+            <li>hello@akaiproperti.id</li>
+            <li>+62 851 0000 0000</li>
+            <li>Surabaya · Jakarta · Bali</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Newsletter</h5>
+          <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:1rem;">
+            Properti baru, insight pasar, langsung ke inbox Anda.
+          </p>
+          <form style="display:flex; gap:0.5rem;">
+            <input type="email" placeholder="Email Anda" style="flex:1; padding:0.75rem; background:transparent; border:1px solid var(--line); border-radius:100px; font-family:inherit; outline:none;">
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 AKAI Properti — Hak cipta dilindungi.</div>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
